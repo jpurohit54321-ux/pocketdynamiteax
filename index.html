@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mamma!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --black-blue: #020817;
+    --navy-dark: #040f2e;
+    --navy-mid: #0b1f44;
+    --navy-light: #1b3a6f;
+    --accent: #7bb7ff;
+    --glow: #9fd3ff;
+    --text: #eaf2ff;
+}
+
+body.light {
+    --black-blue: #f5f9ff;
+    --navy-dark: #ffffff;
+    --navy-mid: #dce9ff;
+    --navy-light: #ffffff;
+    --accent: #2b5cff;
+    --glow: #2b5cff;
+    --text: #111;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background:
+        radial-gradient(circle at top, var(--navy-light), transparent 60%),
+        linear-gradient(180deg, var(--black-blue), var(--navy-dark), var(--navy-mid));
+    color: var(--text);
+    text-align: center;
+    min-height: 100vh;
+}
+
+section { padding: 60px 20px; }
+
+h1, h2 { font-family: 'Playfair Display', serif; }
+
+.toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: var(--navy-mid);
+    color: white;
+    border: 1px solid var(--accent);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.name {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    color: var(--accent);
+    display: inline-block;
+    margin: 10px auto 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid var(--accent);
+    width: 0;
+    animation:
+        typing 3s steps(12,end) forwards,
+        blink 0.8s step-end infinite,
+        glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes typing { to { width: 7ch; } }
+@keyframes blink { 50% { border-color: transparent; } }
+@keyframes glow {
+    from { text-shadow: 0 0 5px var(--glow); }
+    to { text-shadow: 0 0 18px var(--glow); }
+}
+
+.countdown { font-size: 1.6rem; margin-top: 20px; }
+
+.reveal {
+    display: none;
+    font-size: 2.5rem;
+    color: var(--accent);
+    animation: pop 1s ease infinite alternate;
+}
+
+@keyframes pop {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+.card {
+    max-width: 720px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.gallery-item {
+    height: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+.balloon {
+    position: fixed;
+    bottom: -120px;
+    width: 55px;
+    height: 75px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), var(--navy-light));
+    animation: floatUp 18s infinite ease-in;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+@keyframes floatUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-150vh); }
+}
+
+canvas { position: fixed; inset: 0; pointer-events: none; }
+
+footer { padding: 40px; opacity: 0.7; }
+
+@media (min-width: 768px) {
+    .name { font-size: 5rem; }
+}
+</style>
+</head>
+
+<body>
+
+<button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+<canvas id="fireworks"></canvas>
+
+<div class="balloon" style="left:10%"></div>
+<div class="balloon" style="left:30%; animation-delay:4s"></div>
+<div class="balloon" style="left:55%; animation-delay:2s"></div>
+<div class="balloon" style="left:80%; animation-delay:7s"></div>
+
+<section>
+    <h2>Happy 45th Birthday</h2>
+    <div class="name">Timpy</div>
+    <h2>To My Amazing Mother</h2>
+    <div class="countdown" id="countdown">⏳ Calculating...</div>
+    <div class="reveal" id="reveal">🎂✨ HAPPY BIRTHDAY! ✨🎂</div>
+</section>
+
+<section>
+    <div class="card">
+        <h2>Happy Birthday MAMMA 🎉</h2>
+        <p>45 looks absolutely perfect on you. Thank you for all the love you give every day.</p>
+    </div>
+</section>
