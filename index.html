@@ -8,153 +8,133 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --black-blue: #020817;
-    --navy-dark: #040f2e;
-    --navy-mid: #0b1f44;
-    --navy-light: #1b3a6f;
-    --accent: #7bb7ff;
-    --glow: #9fd3ff;
-    --text: #eaf2ff;
-}
+    :root {
+        --black-blue: #020817;
+        --navy-dark: #040f2e;
+        --navy-mid: #0b1f44;
+        --navy-light: #1b3a6f;
+        --accent: #7bb7ff;
+        --glow: #9fd3ff;
+        --text: #eaf2ff;
+    }
 
-body.light {
-    --black-blue: #f5f9ff;
-    --navy-dark: #ffffff;
-    --navy-mid: #dce9ff;
-    --navy-light: #ffffff;
-    --accent: #2b5cff;
-    --glow: #2b5cff;
-    --text: #111;
-}
+    body.light {
+        --black-blue: #f5f9ff;
+        --navy-dark: #ffffff;
+        --navy-mid: #dce9ff;
+        --navy-light: #ffffff;
+        --accent: #2b5cff;
+        --glow: #2b5cff;
+        --text: #111;
+    }
 
-* { box-sizing: border-box; }
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: radial-gradient(circle at top, var(--navy-light), transparent 60%), linear-gradient(180deg, var(--black-blue), var(--navy-dark), var(--navy-mid));
+        color: var(--text);
+        text-align: center;
+        overflow-x: hidden;
+        transition: 0.4s;
+        min-height: 100vh;
+    }
+    section { padding: 60px 20px; }
+    h1, h2 { font-family: 'Playfair Display', serif; }
 
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background:
-        radial-gradient(circle at top, var(--navy-light), transparent 60%),
-        linear-gradient(180deg, var(--black-blue), var(--navy-dark), var(--navy-mid));
-    color: var(--text);
-    text-align: center;
-    min-height: 100vh;
-}
+    .toggle {
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        padding: 8px 14px;
+        border-radius: 20px;
+        background: var(--navy-mid);
+        color: white;
+        border: 1px solid var(--accent);
+        cursor: pointer;
+        z-index: 10;
+    }
 
-section { padding: 60px 20px; }
+    .name {
+        font-family: 'Pacifico', cursive;
+        font-size: 3.5rem;
+        color: var(--accent);
+        display: inline-block;
+        margin: 10px auto 25px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid var(--accent);
+        width: 0;
+        animation:
+            typing 3s steps(12,end) forwards,
+            blink 0.8s step-end infinite,
+            glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes typing { to { width: 7ch; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    @keyframes glow { from { text-shadow: 0 0 5px var(--glow); } to { text-shadow: 0 0 18px var(--glow); } }
 
-h1, h2 { font-family: 'Playfair Display', serif; }
+    .countdown { font-size: 1.6rem; margin-top: 20px; }
+    .reveal {
+        display: none;
+        font-size: 2.5rem;
+        color: var(--accent);
+        animation: pop 1s ease infinite alternate;
+    }
+    @keyframes pop { from { transform: scale(1); } to { transform: scale(1.05); } }
 
-.toggle {
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    background: var(--navy-mid);
-    color: white;
-    border: 1px solid var(--accent);
-    cursor: pointer;
-    z-index: 10;
-}
+    .card { max-width: 720px; margin: auto; padding: 30px; border-radius: 20px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); box-shadow: 0 20px 45px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); }
+    .letter p { font-family: 'Poppins', sans-serif; font-size: 1.1rem; line-height: 1.8; font-style: italic; }
 
-.name {
-    font-family: 'Pacifico', cursive;
-    font-size: 3.5rem;
-    color: var(--accent);
-    display: inline-block;
-    margin: 10px auto 25px;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid var(--accent);
-    width: 0;
-    animation:
-        typing 3s steps(12,end) forwards,
-        blink 0.8s step-end infinite,
-        glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes typing { to { width: 7ch; } }
-@keyframes blink { 50% { border-color: transparent; } }
-@keyframes glow {
-    from { text-shadow: 0 0 5px var(--glow); }
-    to { text-shadow: 0 0 18px var(--glow); }
-}
-
-.countdown { font-size: 1.6rem; margin-top: 20px; }
-
-.reveal {
-    display: none;
-    font-size: 2.5rem;
-    color: var(--accent);
-    animation: pop 1s ease infinite alternate;
-}
-
-@keyframes pop {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-}
-
-.card {
-    max-width: 720px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.4);
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    max-width: 900px;
-    margin: auto;
-}
-
-.gallery-item {
-    height: 300px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.1);
-}
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 900px; margin: auto; }
+    .gallery-item { height: 300px; background: rgba(255,255,255,0.1); border-radius: 15px; overflow: hidden; border: 2px solid var(--navy-light); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .gallery-item img:hover { transform: scale(1.1); }
 
 .balloon {
     position: fixed;
-    bottom: -120px;
-    width: 55px;
-    height: 75px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), var(--navy-light));
-    animation: floatUp 18s infinite ease-in;
-    opacity: 0.7;
+    bottom: -100px;
+    width: 50px;
+    height: 70px;
+    border-radius: 50% 50% 50% 50%;
+    background: radial-gradient(circle at 30% 30%, #ff5c5c, #c70000 70%);
+    opacity: 0.8;
     z-index: -1;
+    animation-name: floatUp, sway;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    animation-delay: calc(var(--i) * 1s);
+}
+
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    width: 2px;
+    height: 30px;
+    background: rgba(255,255,255,0.5);
+    transform: translateX(-50%);
 }
 
 @keyframes floatUp {
-    from { transform: translateY(0); }
-    to { transform: translateY(-150vh); }
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-150vh) rotate(360deg); }
 }
 
-canvas { position: fixed; inset: 0; pointer-events: none; }
-
-footer { padding: 40px; opacity: 0.7; }
-
-@media (min-width: 768px) {
-    .name { font-size: 5rem; }
+@keyframes sway {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(15px); }
 }
+
+/* Different sizes and colors */
+.balloon:nth-child(1) { width: 50px; height: 70px; background: radial-gradient(circle at 30% 30%, #ff5c5c, #c70000); animation-duration: 15s; }
+.balloon:nth-child(2) { width: 40px; height: 60px; background: radial-gradient(circle at 30% 30%, #ffb347, #ffcc33); animation-duration: 18s; animation-delay: 2s; }
+.balloon:nth-child(3) { width: 55px; height: 75px; background: radial-gradient(circle at 30% 30%, #7bb7ff, #0047b3); animation-duration: 20s; animation-delay: 1s; }
+.balloon:nth-child(4) { width: 45px; height: 65px; background: radial-gradient(circle at 30% 30%, #ff77ff, #b300b3); animation-duration: 17s; animation-delay: 3s; }
+.balloon:nth-child(5) { width: 50px; height: 70px; background: radial-gradient(circle at 30% 30%, #5cff7b, #009933); animation-duration: 22s; animation-delay: 4s; }
+.balloon:nth-child(6) { width: 40px; height: 60px; background: radial-gradient(circle at 30% 30%, #ffd700, #ffa500); animation-duration: 19s; animation-delay: 5s; }
+
 </style>
 </head>
 
@@ -163,10 +143,10 @@ footer { padding: 40px; opacity: 0.7; }
 <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
 <canvas id="fireworks"></canvas>
 
-<div class="balloon" style="left:10%"></div>
-<div class="balloon" style="left:30%; animation-delay:4s"></div>
-<div class="balloon" style="left:55%; animation-delay:2s"></div>
-<div class="balloon" style="left:80%; animation-delay:7s"></div>
+<div class="balloon" style="left:10%; animation-delay: 0s;"></div>
+<div class="balloon" style="left:30%; animation-delay: 4s;"></div>
+<div class="balloon" style="left:55%; animation-delay: 2s;"></div>
+<div class="balloon" style="left:80%; animation-delay: 7s;"></div>
 
 <section>
     <h2>Happy 45th Birthday</h2>
@@ -179,6 +159,89 @@ footer { padding: 40px; opacity: 0.7; }
 <section>
     <div class="card">
         <h2>Happy Birthday MAMMA 🎉</h2>
-        <p>45 looks absolutely perfect on you. Thank you for all the love you give every day.</p>
+        <p>Today isn’t just a birthday — it’s a celebration of <em>you</em>. 45 looks perfect on you! Thank you for everything you do for us.</p>
     </div>
 </section>
+
+<section>
+    <div class="card letter">
+        <h2>A Little Note 💌</h2>
+        <p>
+            To the world's best mom, thank you for your endless love, your patience, and for always being our biggest supporter. May this year bring you as much happiness as you
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>Our Memories 📸</h2>
+    <div class="gallery">
+        <div class="gallery-item"><img src="IMG-20241226-WA0060.jpg" alt="Birthday Cake"></div>
+        <div class="gallery-item"><img src="_DSC0012.jpg" alt="Mamma and Papa"></div>
+        <div class="gallery-item"><img src="IMG-20241016-WA0014.jpg" alt="Family Outing"></div>
+    </div>
+</section>
+
+<footer>Made with ❤️ by Jay</footer>
+
+<script>
+function toggleTheme(){
+    document.body.classList.toggle("light");
+}
+
+// Get next December 26
+function getNextBirthday() {
+    const now = new Date();
+    let year = now.getFullYear();
+    const birthdayThisYear = new Date(`December 26, ${year} 00:00:00`);
+    if (now > birthdayThisYear) year++;
+    return new Date(`December 26, ${year} 00:00:00`).getTime();
+}
+
+const birthday = getNextBirthday();
+const countdown = document.getElementById("countdown");
+const reveal = document.getElementById("reveal");
+
+const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const diff = birthday - now;
+
+    if (diff <= 0) {
+        countdown.style.display = "none";
+        reveal.style.display = "block";
+        startFireworks();
+        clearInterval(timer);
+        return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    countdown.textContent = `⏳ ${d}d ${h}h ${m}m ${s}s`;
+}, 1000);
+
+function startFireworks() {
+    const c = document.getElementById("fireworks");
+    const ctx = c.getContext("2d");
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+
+    function animate() {
+        ctx.fillStyle = "rgba(0,0,0,0.15)";
+        ctx.fillRect(0,0,c.width,c.height);
+
+        for(let i=0;i<6;i++){
+            ctx.beginPath();
+            ctx.arc(Math.random()*c.width, Math.random()*c.height, Math.random()*4+1, 0, Math.PI*2);
+            ctx.fillStyle = `hsl(${Math.random()*360},100%,70%)`;
+            ctx.fill();
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+}
+</script>
+
+</body>
+</html>
