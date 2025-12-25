@@ -16,6 +16,8 @@
             --accent: #7bb7ff;
             --glow: #9fd3ff;
             --text: #eaf2ff;
+            --maroon-light: #ff5c5c;
+            --maroon-dark: #c70000;
         }
 
         body.light {
@@ -105,22 +107,41 @@
         .gallery-item img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* This keeps images from stretching */
+            object-fit: cover;
             object-position: center;
             transition: transform 0.5s ease; 
         }
         .gallery-item img:hover { transform: scale(1.05); }
 
+        /* BALLOONS – UPGRADED */
         .balloon {
             position: fixed;
-            bottom: -100px;
-            width: 50px;
-            height: 70px;
+            bottom: -120px;
+            width: 55px;
+            height: 75px;
             border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ff5c5c, #c70000 70%);
-            opacity: 0.8;
+            background:
+                radial-gradient(circle at 30% 30%,
+                  rgba(255,255,255,0.9),
+                  var(--maroon-light) 25%,
+                  var(--maroon-dark) 70%);
+            box-shadow:
+                inset -8px -12px 20px rgba(0,0,0,0.25),
+                0 15px 30px rgba(0,0,0,0.45);
+            animation: floatUp 16s infinite ease-in;
+            opacity: 0.95;
             z-index: -1;
-            animation: floatUp 15s infinite ease-in;
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -26px;
+            left: 50%;
+            width: 2px;
+            height: 26px;
+            background: rgba(255,255,255,0.8);
+            transform: translateX(-50%);
         }
 
         @keyframes floatUp {
@@ -139,29 +160,24 @@
 <button class="toggle" onclick="toggleTheme()">🌙 / ☀️</button>
 <canvas id="fireworks"></canvas>
 
-<div class="balloon" style="left:10%; animation-delay: 0s;"></div>
-<div class="balloon" style="left:35%; animation-delay: 4s; background: radial-gradient(circle at 30% 30%, #7bb7ff, #0b1f44);"></div>
-<div class="balloon" style="left:60%; animation-delay: 2s; background: radial-gradient(circle at 30% 30%, #9fd3ff, #1b3a6f);"></div>
-<div class="balloon" style="left:85%; animation-delay: 7s;"></div>
-
 <section>
     <h2>Happy 45th Birthday</h2>
     <div class="name">Timpy</div>
     <h2>To My Amazing Mother</h2>
-    <div class="countdown" id="countdown">⏳ Calculating...</div>
+
     <div class="reveal" id="reveal">🎂✨ HAPPY BIRTHDAY! ✨🎂</div>
 </section>
 
 <section>
     <div class="card">
         <h2>Happy Birthday MAMMA 🎉</h2>
-        <p>Today isn’t just a birthday — it’s a celebration of <em>you</em>. 45 looks perfect on you! Thank you for everything you do for us.</p>
+        <p>Today isn’t just a birthday — it’s a celebration of <em>you</em>. 45555555555555555555! Thank you for everything you do for us.</p>
     </div>
 </section>
 
 <section>
     <div class="card letter">
-        <h2>A Little Note 💌</h2>
+        <h2>A Little Note </h2>
         <p>
             To the world's best mom, thank you for your endless love, your patience, and for always being our biggest supporter. May this year bring you as much happiness as you give to everyone around you!
         </p>
@@ -174,7 +190,6 @@
         <div class="gallery-item"><img src="IMG-20241226-WA0060.jpg" alt="Birthday Cake"></div>
         <div class="gallery-item"><img src="_DSC0012.jpg" alt="Mamma and Papa"></div>
         <div class="gallery-item"><img src="IMG-20241016-WA0014.jpg" alt="Family Outing"></div>
-        
     </div>
 </section>
 
@@ -240,3 +255,4 @@ function startFireworks() {
 
 </body>
 </html>
+
